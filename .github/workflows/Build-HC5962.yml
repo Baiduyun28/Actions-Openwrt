@@ -65,6 +65,7 @@ jobs:
         chmod +x $DIY_P1_SH
         cd openwrt
         $GITHUB_WORKSPACE/$DIY_P1_SH
+        sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/ramips/Makefile
         
     - name: Update feeds
       run: cd openwrt && ./scripts/feeds update -a
@@ -85,7 +86,6 @@ jobs:
       run: |
         cd openwrt
         make defconfig
-        sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/ramips/Makefile
         echo "The branch is $REPO_BRANCH"
         cat ./target/linux/ramips/Makefile
         cat .config
