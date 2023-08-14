@@ -16,7 +16,7 @@ on:
 
 env:
   REPO_URL: https://github.com/openwrt/openwrt
-  REPO_BRANCH: openwrt-22.03 #23.05
+  REPO_BRANCH: openwrt-23.05 #22.03
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: HC5962-diff.config
   DIY_P1_SH: diy-part1.sh
@@ -85,7 +85,7 @@ jobs:
       run: |
         cd openwrt
         make defconfig
-        #sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/ramips/Makefile
+        sed -i 's/KERNEL_PATCHVER:=5.15/KERNEL_PATCHVER:=5.10/g' ./target/linux/ramips/Makefile
         echo "The branch is $REPO_BRANCH"
         cat ./target/linux/ramips/Makefile
         cat .config
